@@ -1,0 +1,67 @@
+C:\Users\Mayank>"C:\Program Files\MongoDB\Server\5.0\bin\mongo.exe"
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("e69d7cd9-6a5f-4584-a13e-410d6f2bde4b") }
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mayankpatelfirstdatabase
+switched to db mayankpatelfirstdatabase
+> db.mayankdata.insertOne({name:"React JS",type:"Frontend",videos:50,active:true})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61570dd8d73fe9da51c4fe33")
+}
+> show dbs;
+admin                     0.000GB
+config                    0.000GB
+local                     0.000GB
+mayankpatelfirstdatabase  0.000GB
+> show collections
+mayankdata
+>db.mayankdata.find()
+{ "_id" : ObjectId("61570dd8d73fe9da51c4fe33"), "name" : "React JS", "type" : "Frontend", "videos" : 50, "active" : true }
+ db.mayankdata.find().pretty()
+{
+        "_id" : ObjectId("61570dd8d73fe9da51c4fe33"),
+        "name" : "React JS",
+        "type" : "Frontend",
+        "videos" : 50,
+        "active" : true
+}
+>
+
+
+List of commands : 
+===============================
+show dbs
+use mayankpatelfirstdatabase
+db.mayankdata.insertOne({name:"React JS",type:"Frontend",videos:50,active:true})
+show collections
+db.mayankdata.find()
+db.mayankdata.find().pretty()
+db.mayankdata.insertMany([{name:"Mongo2",type:"DB1",videos:200,active:true},{name:"Mongo3",type:"DB2",videos:50,active:true},{name:"Mongo4",type:"DB3",videos:20,active:true}]);
+
+quit()
+
+Fetch Queries Mongo DB :
+================================================================ 
+db.mayankdata.find().pretty()
+db.mayankdata.find({name:"Mongo2"}).pretty();
+db.mayankdata.find({name:"Mongo2"},{name:1}).pretty(); // This will display only id and name column of collection.
+db.mayankdata.find({name:"Mongo2"},{_id:0,name:1}).pretty(); // This will display only name column of collect..
+db.mayankdata.find({active:true}).pretty().limit(1); // Display oldest 1st record only
+db.mayankdata.find({active:true}).pretty().limit(2); // display oldest 2 records only.
+db.mayankdata.findOne({active:true});
+db.mayankdata.find({active:true}).pretty().limit(1).skip(1);
+
+Update Queries Mongo DB : 
+=================================================================
+db.mayankdata.updateOne({name:"Monbo"},{$set: {type:"DB Updated"}});
+db.mayankdata.updateMany({type:"DB1"},{$set: {active:false}});
+
+Delete Queries Mango DB : 
+=================================================================
+db.mayankdata.deleteMany({type:"DB1"});
