@@ -29,9 +29,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
+    console.log("===>",req.query.id);
+    //alert(req.query.id);
     requests(`https://jsonplaceholder.typicode.com/posts/${req.query.id}`)
     .on("data",(chunk) => {
         const objdata = JSON.parse(chunk);
+        //console.log("Object Data ===>",objdata);
         const arrData = [objdata];
         const bodyData = arrData[0].body;
         res.render("about",{
@@ -40,6 +43,7 @@ app.get("/about", (req, res) => {
         });
     });
 });
+
 app.get("/about/*", (req, res) => {
     res.render("404",{
         errorComment: "404 about page not found.............."
